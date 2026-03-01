@@ -12,7 +12,7 @@ exports.getPaymentPage = async (req, res) => {
     return res.redirect("/orders");
   }
 
-  res.render("payments/checkout", {
+  res.render("payments/pay", {
     order,
     stripePublicKey: process.env.STRIPE_PUBLIC_KEY,
   });

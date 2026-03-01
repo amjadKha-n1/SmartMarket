@@ -1,0 +1,44 @@
+<link rel="stylesheet" href="/css/form.css" />
+<div class="div-container">
+    <h1>Edit Store</h1>
+    <form action="/seller/editStore" method="POST" enctype="multipart/form-data">
+      <p>
+        <label for="storeName">Store Name</label>
+        <input
+          type="text"
+          name="storeName"
+          id="storeName"
+          value="<%= seller.storeName %>"
+          minlength="2"
+          required
+        />
+      </p>
+  
+      <p>
+        <label for="description">Store description</label>
+        <input
+          type="text"
+          name="description"
+          id="description"
+          value="<%= seller.storeDescription %>"
+        />
+      </p>
+  
+      <p>
+        <label>Current Logo:</label><br />
+        <% if (seller.storeLogo) { %>
+          <img src="<%= seller.storeLogo %>" alt="Store Logo" style="max-width:150px;"/>
+        <% } else { %>
+          <span>No logo uploaded</span>
+        <% } %>
+      </p>
+  
+      <p class="image">
+        <label>Change Logo:</label>
+        <input type="file" name="storeLogo" />
+      </p>
+  
+      <button>Edit Store</button>
+    </form>
+  </div>
+  

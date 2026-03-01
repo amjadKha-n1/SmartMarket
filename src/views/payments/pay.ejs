@@ -1,0 +1,18 @@
+<script src="/js/payments.js" defer></script>
+
+<h2>Pay for Order #<%= order._id.toString().slice(-6) %></h2>
+<p>Total: $<%= order.totalPrice %></p>
+
+<form id="payment-form" action="/payments/<%= order._id %>">
+  <div id="card-element"></div>
+  <button type="submit">Pay Now</button>
+</form>
+
+<!-- DATA PASSED SAFELY TO JS -->
+<script>
+  window.PAYMENT_CONFIG = {
+    stripePublicKey: "<%= stripePublicKey %>",
+    clientSecret: "<%= clientSecret %>",
+    orderId: "<%= order._id %>"
+  };
+</script>

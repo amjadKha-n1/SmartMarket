@@ -1,0 +1,29 @@
+<link rel="stylesheet" href="/css/dashboard.css">
+<h2 class="titles">All Sellers</h2>
+<table class="table table-bordered">
+    <thead>
+        <th>Store Name</th>
+        <th>Owner Email</th>
+        <th>Status</th>
+        <th>Action</th>
+    </thead>
+    <tbody>
+        <% for (const seller of sellers) { %>
+            <tr>
+                <td><%= seller.storeName %></td>
+                <td><%= seller.userId.email %></td>
+                <td><%= seller.status %></td>
+                <td class="btn-td">
+                    <div class="btn-div">
+                        <form action="/admin/<%= seller._id %>/approve" method="POST">
+                          <button class="btn-1">Approve</button>
+                        </form>
+                        <form action="/admin/<%= seller._id %>/reject" method="POST">
+                          <button class="btn-2">reject</button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+        <% } %>
+    </tbody>
+</table>

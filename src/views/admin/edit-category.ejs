@@ -1,0 +1,62 @@
+<link rel="stylesheet" href="/css/form.css" />
+<div class="div-container">
+  <h1>Edit Store</h1>
+  <form
+    action="/admin/<%= category._id %>/edit-category"
+    method="POST"
+    enctype="multipart/form-data"
+  >
+    <p>
+      <label for="name">Name</label>
+      <input
+        type="text"
+        name="name"
+        id="name"
+        value="<%= category.name %>"
+        minlength="2"
+        required
+      />
+    </p>
+
+    <p>
+      <label for="slug">Slug</label>
+      <input
+        type="text"
+        name="slug"
+        id="slug"
+        value="<%= category.slug %>"
+        required
+      />
+    </p>
+
+    <p>
+      <label for="description">Description</label>
+      <input
+        type="text"
+        name="description"
+        id="description"
+        value="<%= category.description %>"
+      />
+    </p>
+
+    <p>
+      <label>Current Logo:</label><br />
+      <% if (category.image) { %>
+      <img
+        src="<%= category.image %>"
+        alt="Category Image"
+        style="max-width: 150px"
+      />
+      <% } else { %>
+      <span>No Image uploaded</span>
+      <% } %>
+    </p>
+
+    <p class="image">
+      <label>Change Image:</label>
+      <input type="file" name="image" />
+    </p>
+
+    <button>Edit Category</button>
+  </form>
+</div>

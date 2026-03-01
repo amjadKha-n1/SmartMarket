@@ -1,0 +1,150 @@
+<link rel="stylesheet" href="/css/dashboard.css" />
+
+<h1>Admin Dashboard</h1>
+
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h2 class="cart-title">Total Sellers: <%= stats.allSellers %></h2>
+        <h2 class="card-title">
+          Pending Sellers: <%= stats.pendingSellersCount %>
+        </h2>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h2 class="card-title">All Products: <%= stats.allProducts %></h2>
+        <h2 class="card-title">
+          Pending Products: <%= stats.pendingProductsCount %>
+        </h2>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h2 class="card-title">Total Users: <%= stats.totalUsersCount %></h2>
+        <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h2 class="card-title">Total Orders: <%= stats.totalOrdersCount %></h2>
+        <div class="order-div">
+          <h5 class="card-text">
+            Pending Orders: <%= orderCountByStatus.pending || 0 %>
+          </h5>
+          <h5 class="card-text">
+            Paid Orders: <%= orderCountByStatus.paid || 0 %>
+          </h5>
+          <h5 class="card-text">
+            Shipped Orders: <%= orderCountByStatus.shipped || 0 %>
+          </h5>
+          <h5 class="card-text">
+            Delivered Orders: <%= orderCountByStatus.delivered || 0 %>
+          </h5>
+          <h5 class="card-text">
+            Cancelled Orders: <%= orderCountByStatus.cancelled || 0 %>
+          </h5>
+        </div>
+
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 center">
+    <div class="card">
+      <div class="card-body">
+        <h2 class="card-title">Total Revenue</h2>
+        <p class="card-text">
+          With supporting text below as a natural lead-in to additional content.
+        </p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr />
+<h2 class="titles">Latest Seller Requests</h2>
+<div class="table-responsive-sm table-bordered">
+  <table class="table">
+    <thead>
+      <th>Store Name</th>
+      <th>Owner Email</th>
+      <th>Status</th>
+      <th>Action</th>
+    </thead>
+    <tbody>
+      <% for (const latestSeller of latestSellers) { %>
+      <tr class="product-row">
+        <td><%= latestSeller.storeName %></td>
+        <td><%= latestSeller.userId.email %></td>
+        <td><%= latestSeller.status %></td>
+        <td class="btn-td">
+          <div class="btn-div">
+            <form action="/admin/<%= latestSeller._id %>/approve" method="POST">
+              <button class="btn-1">Approve</button>
+            </form>
+            <form action="/admin/<%= latestSeller._id %>/reject" method="POST">
+              <button class="btn-2">reject</button>
+            </form>
+          </div>
+        </td>
+      </tr>
+      <% } %>
+    </tbody>
+  </table>
+</div>
+
+<h2 class="titles">Latest Product Submissions</h2>
+
+<table class="table table-bordered">
+  <thead>
+    <th>Product Name</th>
+    <th>Seller</th>
+    <th>Price</th>
+    <th>Status</th>
+    <th>Action</th>
+  </thead>
+  <tbody>
+    <% for (const latestProduct of latestProducts) { %>
+    <tr>
+      <td><%= latestProduct.title %></td>
+      <td><%= latestProduct.sellerId.userId.name %></td>
+      <td><%= latestProduct.price %></td>
+      <td><%= latestProduct.isApproved %></td>
+      <td class="btn-td">
+        <div class="btn-div">
+          <form
+            action="/admin/<%= latestProduct._id %>/approveProduct"
+            method="POST"
+          >
+            <input
+              type="hidden"
+              name="redirect"
+              value="<%= currentPage = '/admin' %>"
+            />
+            <button class="btn-1">Approve</button>
+          </form>
+          <form
+            action="/admin/<%= latestProduct._id %>/rejectProduct"
+            method="POST"
+          >
+            <button class="btn-2">reject</button>
+          </form>
+        </div>
+      </td>
+    </tr>
+    <% } %>
+  </tbody>
+</table>

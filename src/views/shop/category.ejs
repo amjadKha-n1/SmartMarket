@@ -1,0 +1,26 @@
+<link rel="stylesheet" href="/css/shop.css">
+<h1>All Categories</h1>
+<div class="card-deck">
+    <% for (const category of categories) { %>
+        <div class="card">
+            <a href="/categories/<%= category.slug %>" class="card-link">
+                <img class="card-img-top" src="<%= category.image %>" alt="Category Image">
+                <div class="card-body">
+                    <h5 class="card-title"><%= category.name %></h5>
+                    <h5 class="card-title"><%= category.description %></h5>
+                </div>
+            </a>
+
+            <% if (role === 'admin') { %>
+                <div class="edit-category">
+                    <a href="/admin/<%= category._id %>/edit-category">Edit Category</a>
+                </div>
+            <% } %>
+        </div>
+    <% } %>
+</div>
+<% if (role === 'admin') { %>
+    <div class="add-new-category">
+        <a href="/admin/add-category">Add new Category</a>
+    </div>
+<% } %>

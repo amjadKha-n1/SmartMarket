@@ -1,0 +1,16 @@
+<link rel="stylesheet" href="/css/orders.css">
+<div class="order-success-container order-box">
+    <h1>🎉 Order Placed Successfully!</h1>
+
+    <p><strong>Order ID:</strong> <%= order._id %></p>
+    <% order.items.forEach(item => { %>
+        <p><strong>Status:</strong> <%= item.status %></p>
+    <% }) %>
+    <p><strong>Total Items:</strong> <%= order.totalItems %></p>
+    <p><strong>Total Price:</strong> ₽<%= order.totalPrice %></p>
+
+    <div class="actions">
+        <a href="/orders" class="btn">My Orders</a>
+        <a href="/" class="btn secondary">Continue Shopping</a>
+    </div>
+</div>

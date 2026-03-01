@@ -1,0 +1,56 @@
+<link rel="stylesheet" href="css/form.css">
+<div class="div-container">
+    <h1>Create New Account</h1>
+  <form action="/signup" method="POST">
+    <p>
+      <label for="email">E-Mail</label>
+      <input type="email" name="email" id="email" required />
+    </p>
+
+    <p>
+      <label for="confirm-email">Confirm Email</label>
+      <input type="email" name="confirm-email" id="confirm-email" required />
+    </p>
+
+    <p>
+      <label for="password">Password</label>
+      <input
+        type="password"
+        name="password"
+        id="password"
+        minlength="6"
+        required
+      />
+    </p>
+
+    <p>
+      <label for="fullname">Full Name</label>
+      <input type="text" name="fullname" id="fullname" required>
+    </p>
+
+    <p>
+      <label for="street">Street</label>
+      <input type="text" name="street" id="street" required />
+    </p>
+
+    <p>
+      <label for="postal">Postal Code</label>
+      <input
+        type="text"
+        name="postal"
+        id="postal"
+        minlength="5"
+        maxlength="5"
+        required
+      />
+    </p>
+
+    <p>
+        <label for="city">City</label>
+        <input type="text" name="city" id="city" required>
+    </p>
+
+    <button>Create Account</button>
+    <p id="par">Already have an account? <a href="/login">Login</a></p>
+  </form>
+</div>

@@ -1,0 +1,145 @@
+body {
+  background: #f4f6fb;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.profile-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.profile-card {
+  width: 100%;
+  max-width: 900px;
+  background: #fff;
+  border-radius: 18px;
+  padding: 30px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+.profile-top {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.avatar {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #eee;
+}
+
+.profile-top h1 {
+  margin: 0;
+}
+
+.muted {
+  color: #777;
+  font-size: 0.9rem;
+}
+
+.badge {
+  display: inline-block;
+  margin-top: 6px;
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+.badge.admin {
+  background: #677e94;
+  color: #fff;
+}
+.badge.seller {
+  background: #007bff;
+  color: #fff;
+}
+.badge.customer {
+  background: #28a745;
+  color: #fff;
+}
+
+.profile-section {
+  margin-top: 30px;
+}
+
+.profile-section h3 {
+  margin-bottom: 15px;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 6px;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.status {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+}
+
+.status.pending {
+  background: #ffeeba;
+}
+.status.approved {
+  background: #d4edda;
+}
+.status.rejected {
+  background: #f8d7da;
+}
+
+.action-grid {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 10px 18px;
+  border-radius: 10px;
+  background: #007bff;
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.btn:hover {
+  background: #0056b3;
+  color: #fff;
+}
+
+.btn.outline {
+  background: transparent;
+  border: 1px solid #007bff;
+  color: #007bff;
+}
+
+.btn.outline:hover {
+  background: #007bff;
+  color: #fff;
+}
+
+.profile-card.admin {
+  border-top: 8px solid #7ea1c4;
+}
+.profile-card.seller {
+  border-top: 8px solid #007bff;
+}
+.profile-card.customer {
+  border-top: 8px solid #28a745;
+}
+
+@media (max-width: 600px) {
+  .profile-top {
+    flex-direction: column;
+    text-align: center;
+  }
+}

@@ -1,0 +1,39 @@
+<link rel="stylesheet" href="/css/profile.css" />
+<link rel="stylesheet" href="/css/shop.css">
+
+<div class="profile-wrapper">
+  <div class="profile-card customer">
+    <div class="profile-top">
+      <img src="<%= product.images[0] %>" class="avatar" />
+      <div>
+        <h1><%= product.title %></h1>
+
+      </div>
+    </div>
+
+    <div class="profile-section">
+      <h3>Product Details</h3>
+      <div class="info-grid">
+        <p><strong> Product Name:</strong> <%= product.title %></p>
+        <p><strong>Description:</strong> <%= product.description %></p>
+        <p><strong>Price:</strong> ₽<%= product.price%></p>
+        <p><strong>Stock:</strong> <%= product.stock || '—' %></p>
+        <p>
+          <strong>Created At:</strong> <%= product.createdAt.toDateString() %>
+        </p>
+      </div>
+    </div>
+
+    <div class="profile-section card">
+      <h3>My Activity</h3>
+      <form action="/cart/add/<%= product._id %>" method="POST">
+          <button type="submit">Add to Cart</button>
+      </form>
+      <div class="action-grid">
+        <a href="/orders" class="btn">My Orders</a>
+        <a href="/cart" class="btn outline">My Cart</a>
+        <a href="/products" class="btn outline">Shop</a>
+      </div>
+    </div>
+  </div>
+</div>

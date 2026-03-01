@@ -1,0 +1,69 @@
+<link rel="stylesheet" href="/css/orders.css">
+
+<h1>All Orders</h1>
+
+<% if (!orders || orders.length === 0) { %>
+  <div class="empty-state">
+    <p>No orders yet.</p>
+  </div>
+<% } else { %>
+
+  <% orders.forEach(order => { %>
+
+    <div class="order-wrapper">
+      <h3>
+        Order #<%= order._id.toString().slice(-6) %> |
+        <span class="status <%= order.status %>"><%= order.status %></span>
+      </h3>
+      <p>
+        Created at: <%= order.createdAt.toDateString() %> |
+        Customer: <%= order.user.name %>
+      </p>
+
+      <table class="order-table">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Seller</th>
+            <th>Status</th>
+            <th>Quantity</th>
+            <th>Price (each)</th>
+            <th>Subtotal</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% let orderTotal = 0; %>
+
+          <% order.items.forEach(item => { %>
+            <% const subtotal = item.priceAtTime * item.quantity; %>
+            <% orderTotal += subtotal; %>
+
+            <tr>
+              <td><%= item.product.title %></td>
+              <td><%= item.seller.storeName %></td>
+              <td><%= item.status %></td>
+              <td><%= item.quantity %></td>
+              <td><%= item.priceAtTime %></td>
+              <td><%= subtotal %></td>
+              <td><button>Hi</button></td>
+            </tr>
+          <% }) %>
+        </tbody>
+
+        <tfoot>
+          <tr>
+            <td colspan="4"><strong>Total</strong></td>
+            <td><strong><%= orderTotal %></strong></td>
+            <td></td>
+          </tr>
+        </tfoot>
+      </table>
+
+      <hr>
+    </div>
+
+  <% }) %>
+
+<% } %>

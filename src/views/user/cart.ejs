@@ -1,0 +1,63 @@
+<link rel="stylesheet" href="/css/cart.css">
+<div class="cart-container">
+  <h1>Your Shopping Cart 🛒</h1>
+
+  <% if (!cart || !cart.items || cart.items.length === 0) { %>
+    <div class="empty-cart">
+      <p>Your cart is empty!</p>
+      <a href="/products" class="btn-continue">Continue Shopping</a>
+    </div>
+
+  <% } else { %>
+
+    <table class="cart-table">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Price</th>
+          <th>Qty</th>
+          <th>Subtotal</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% cart.items.forEach(item => { %>
+          <% if (!item.productId) return; %>
+          <tr>
+            <td class="product-cell">
+              <img src="<%= item.productId.images[0] %>" alt="<%= item.productId.title %>">
+              <p><%= item.productId.title %></p>
+            </td>
+            <td>₽<%= item.priceAtTime %></td>
+            <td>
+              <form action="/cart/<%= item.productId._id %>/decrease" method="POST" class="qty-form">
+                <button type="submit" class="qty-btn">-</button>
+              </form>
+              <strong><%= item.quantity %></strong>
+              <form action="/cart/<%= item.productId._id %>/increase" method="POST" class="qty-form">
+                <button type="submit" class="qty-btn">+</button>
+              </form>
+            </td>
+            <td>₽<%= item.subtotal %></td>
+            <td>
+              <form action="/cart/<%= item.productId._id %>/remove" method="POST">
+                <button class="remove-btn">Remove</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+
+    <div class="cart-summary">
+      <h3>Total Items: <%= cart.totalItems %></h3>
+      <h2>Total Price: ₽<%= cart.totalPrice %></h2>
+
+      <form action="/orders" method="POST">
+        <button class="checkout-btn" type="submit">Proceed to Checkout</button>
+      </form>
+      <a href="/products" class="btn-continue">Continue Shopping</a>
+    </div>
+
+  <% } %>
+</div>

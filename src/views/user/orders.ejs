@@ -1,0 +1,47 @@
+<link rel="stylesheet" href="/css/orders.css">
+
+<h1>My Orders</h1>
+
+<% if (!orders || orders.length === 0) { %>
+  <div class="empty-state">
+    <p>You haven’t placed any orders yet.</p>
+    <a href="/products" class="btn">Start Shopping</a>
+  </div>
+<% } else { %>
+  <div class="orders-list">
+    <% orders.forEach(order => { %>
+      <div class="order-card">
+  
+        <div>
+          <strong>Order:</strong> #<%= order._id.toString().slice(-6) %>
+        </div>
+  
+        <div>
+          <strong>Date:</strong> <%= order.createdAt.toDateString() %>
+        </div>
+  
+        <div class="status <%= order.paymentStatus %>">
+          <%= order.paymentStatus %>
+        </div>
+  
+        <div>
+          <strong>Total:</strong> ₽<%= order.totalPrice %>
+        </div>
+  
+        <div class="actions">
+          <a href="/orders/<%= order._id %>" class="btn small">
+            View Details
+          </a>
+  
+          <% if (order.paymentStatus === "unpaid") { %>
+            <a href="/payments/<%= order._id %>" class="btn small pay-btn">
+              Pay Now
+            </a>
+          <% } %>
+        </div>
+  
+      </div>
+    <% }) %>
+  </div>
+  
+<% } %>

@@ -1,0 +1,37 @@
+<link rel="stylesheet" href="/css/dashboard.css">
+<h2 class="titles">All products</h2>
+<table class="table table-bordered">
+    <thead>
+        <th>Product Image</th>
+        <th>Product Name</th>
+        <th>Category</th>
+        <th>Seller</th>
+        <th>Deleted</th>
+        <th>Price</th>
+        <th>Approvel</th>
+        <th>Action</th>
+    </thead>
+    <tbody>
+        <% for (const product of products) { %>
+            <tr class="product-row">    
+                <div>
+                    <td class="td-img"><img class="img" src="<%= product.images[0] %>" alt="Product Image"></td>
+                </div>
+                <td><%= product.title %></td>
+                <td><%= product.categoryId?.name || 'N/A' %></td>
+                <td><%= product.sellerId.userId.name %></td>
+                <td><%= product.isDeleted %></td>
+                <td><%= product.price %></td>
+                <td><%= product.isApproved %></td>
+                <td class="btn-td">
+                  <div class="btn-div">
+                    <a href="/seller/<%= product._id %>/edit-product"><button class="btn-1"">Edit</button></a>
+                  </div>
+                </td>
+            </tr>
+        <% } %>
+    </tbody>
+</table>
+<div class="add-new-product">
+    <a href="/seller/add-product">Add new Product</a>
+</div>

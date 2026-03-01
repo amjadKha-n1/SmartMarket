@@ -1,0 +1,170 @@
+<link rel="stylesheet" href="/css/dashboard.css">
+<h1>Seller Dashboard</h1>
+<div class="store-info">
+    <div class="card mb-3">
+        <img class="card-img-top" src="<%= seller.storeLogo %>" alt="Card image cap">
+        <div class="card-body">
+            <h2 class="card-title"><%= seller.storeName %></h2>
+            <p class="card-text"><%= seller.storeDescription %></p>
+            <a href="/seller/editStore">Edit Store</a>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title">Total Products: <%= stats.totalProducts %></h2>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title">Total Orders: <%= stats.totalOrders %></h2>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title">Total Sales: <%= stats.totalSales %></h2>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 center">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-text">Pending Orders: <%= orderCountByStatus.pending || 0 %></h4>
+                <h4 class="card-text">Paid Orders: <%= orderCountByStatus.paid || 0 %></h4>
+                <h4 class="card-text">Shipped Orders: <%= orderCountByStatus.shipped || 0 %></h4>
+                <h4 class="card-text">Delivered Orders: <%= orderCountByStatus.delivered || 0 %></h4>
+                <h4 class="card-text">Cancelled Orders: <%= orderCountByStatus.cancelled || 0 %></h4>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+        </div>
+    </div>
+</div>
+<hr>
+<h2 class="titles">My Products</h2>
+<div class="table-responsive-sm table-bordered">
+    <table class="table">
+        <thead>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Stock</th>
+            <th>Product Approvel</th>
+            <th>Seller Status</th>
+            <th>Actions</th>
+        </thead>
+        <tbody>
+            <% for (const sellerProduct of sellerProducts) { %>
+                <tr class="product-row">
+                    <div>
+                        <td class="td-img"><img class="img" src="<%= sellerProduct.images[0] %>" alt="Product Image"></td>
+                    </div>
+                    <div>
+                        <td><%= sellerProduct.title %></td>
+                        <td><%= sellerProduct.price %></td>
+                        <td><%= sellerProduct.stock %></td>
+                        <td><%= sellerProduct.isApproved %></td>
+                        <td><%= sellerProduct.sellerId.status %></td>
+                        <td class="btn-td">
+                            <div class="btn-div">
+                                <a href="/seller/<%= sellerProduct._id %>/edit-product"><button class="btn-1"">Edit</button></a>
+                                <form action="/seller/<%= sellerProduct._id %>/delete-product" method="POST">
+                                    <button class="btn-2">Delete</button>
+                                </form>
+                            </div>
+                        </td>
+                    </div>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+    <hr>
+</div>
+
+<div class="add-new-product">
+    <a href="/seller/add-product">Add new Product</a>
+</div>
+
+<h2 class="titles">My Orders</h2>
+
+<div class="table-responsive-sm table-bordered">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Order ID</th>
+        <th>Products</th>
+        <th>Quantity</th>
+        <th>Total</th>
+        <th>Status</th>
+        <th>Date</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% orders.forEach(order => { %>
+        <% order.items.forEach((item, index) => { %>
+          <tr>
+            <td>#<%= order._id.toString().slice(-6) %></td>
+            <% if (item.product) { %>
+              <td><%= item.product.title %></td>
+            <% } else { %>
+              <td><span>Deleted Product</span></td>
+            <% } %>
+            <td><%= item.quantity %></td>
+
+            <td>$<%= item.subtotal %></td>
+
+            <!-- Order-level status -->
+            <td class="status <%= item.status %>">
+              <%= item.status %>
+            </td>
+
+            <td><%= order.createdAt.toDateString() %></td>
+
+            <td class="btn-td">
+                <form action="/seller/orders/<%= order._id %>/items/<%= item._id %>" method="POST">
+                  <select name="status" required>
+                    <option value="pending" <%= item.status === 'pending' ? 'selected' : '' %>>
+                      Pending
+                    </option>
+              
+                    <option value="paid" <%= item.status === 'paid' ? 'selected' : '' %>>
+                      Paid
+                    </option>
+              
+                    <option value="shipped" <%= item.status === 'shipped' ? 'selected' : '' %>>
+                      Shipped
+                    </option>
+              
+                    <option value="delivered" <%= item.status === 'delivered' ? 'selected' : '' %>>
+                      Delivered
+                    </option>
+              
+                    <option value="cancelled" <%= item.status === 'cancelled' ? 'selected' : '' %>>
+                      Cancelled
+                    </option>
+                  </select>
+              
+                  <button type="submit" class="btn-1">
+                    Update
+                  </button>
+                </form>
+              </td>
+              
+          </tr>
+        <% }) %>
+      <% }) %>
+    </tbody>
+  </table>
+</div>

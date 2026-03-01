@@ -1,0 +1,41 @@
+<link rel="stylesheet" href="/css/orders.css">
+<div class="order-details">
+  <h1>Order Details</h1>
+  
+  <div class="order-box">
+    <p><strong>Order ID:</strong> #<%= orders._id %></p>
+    <p><strong>Date:</strong> <%= orders.createdAt.toDateString() %></p>
+  </div>
+  
+  <h2>Items</h2>
+  
+  <table class="order-table">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Qty</th>
+        <th>Status</th>
+        <th>Price</th>
+        <th>Subtotal</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% orders.items.forEach(item => { %>
+        <tr>
+          <td class="product-cell">
+            <img src="<%= item.product.images[0] %>" alt="">
+            <span><%= item.product.title %></span>
+          </td>
+          <td><%= item.quantity %></td>
+          <td><%= item.status %></td>
+          <td>₽<%= item.priceAtTime %></td>
+          <td>₽<%= item.subtotal %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+  
+  <div class="summary">
+    <h3>Total: ₽<%= orders.totalPrice %></h3>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<link rel="stylesheet" href="/css/form.css">
+<div class="div-container">
+    <h1>Create New Account</h1>
+  <form action="/admin/add-category" method="POST" enctype="multipart/form-data">
+    <p>
+      <label for="name">Name</label>
+      <input type="text" name="name" id="name" required />
+    </p>
+
+    <p>
+      <label for="slug">Slug</label>
+      <input type="text" name="slug" id="slug" required />
+    </p>
+
+    <p>
+      <label for="description">Description</label>
+      <input type="text" name="description" id="description" required>
+    </p>
+
+    <p class="image">
+        <input type="file" name="image" id="image" required>
+    </p>
+
+    <button>Create Category</button>
+  </form>
+</div>

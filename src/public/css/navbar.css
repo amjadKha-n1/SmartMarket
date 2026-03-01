@@ -1,0 +1,106 @@
+.navbar {
+  background-color: #007bff !important;
+  padding: 0.5rem 2rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  border-radius: 0.5rem;
+}
+
+.navbar-brand {
+  color: #fff !important;
+  font-size: 1.8rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  transition: color 0.3s;
+}
+
+.navbar-brand:hover {
+  color: #ffd700 !important;
+}
+
+.navbar-nav {
+  margin-left: auto;
+}
+
+.nav-item {
+  margin-left: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-link {
+  color: #fff !important;
+  font-weight: 500;
+  transition: color 0.3s, background 0.3s;
+  padding: 8px 12px;
+  border-radius: 5px;
+}
+
+.nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #ffd700 !important;
+}
+
+.navbar-toggler {
+  border: none;
+  outline: none;
+  color: #fff !important;
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28255, 255, 255, 1%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+.navbar .form-inline {
+  display: flex;
+  align-items: center;
+  margin-left: 15px;
+}
+
+.navbar .form-control {
+  border-radius: 20px;
+  border: none;
+  padding: 6px 15px;
+  width: 180px;
+  transition: width 0.3s;
+}
+
+.navbar .form-control:focus {
+  width: 250px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  outline: none;
+}
+
+.navbar .btn-outline-success {
+  border-radius: 20px;
+  padding: 6px 15px;
+  margin-left: 10px;
+  border: 2px solid #fff;
+  color: #fff;
+  transition: all 0.3s;
+}
+
+.navbar .btn-outline-success:hover {
+  background-color: #ffd700;
+  border-color: #ffd700;
+  color: #007bff;
+}
+
+@media (max-width: 991px) {
+  .navbar-nav {
+    margin-top: 10px;
+  }
+  .navbar .form-inline {
+    width: 100%;
+    margin-top: 10px;
+  }
+  .navbar .form-control {
+    width: 100%;
+  }
+  .navbar .btn-outline-success {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 5px;
+  }
+}

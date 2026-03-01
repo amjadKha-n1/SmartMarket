@@ -1,0 +1,38 @@
+<link rel="stylesheet" href="/css/profile.css">
+
+<div class="profile-wrapper">
+
+  <div class="profile-card customer">
+
+    <div class="profile-top">
+      <img src="<%= user.avatar || '/images/default-avatar.png' %>" class="avatar">
+      <div>
+        <h1><%= user.name %></h1>
+        <span class="badge customer">Customer</span>
+        <p class="muted"><%= user.email %></p>
+      </div>
+    </div>
+
+    <div class="profile-section">
+      <h3>Personal Details</h3>
+      <div class="info-grid">
+        <p><strong>Name:</strong> <%= user.name %></p>
+        <p><strong>Email:</strong> <%= user.email %></p>
+        <p><strong>Phone:</strong> <%= user.phone || '—' %></p>
+        <p><strong>Address:</strong> <%= user.street || '—' %></p>
+        <p><strong>Joined:</strong> <%= user.createdAt.toDateString() %></p>
+      </div>
+    </div>
+
+    <div class="profile-section">
+      <h3>My Activity</h3>
+      <div class="action-grid">
+        <a href="/orders" class="btn">My Orders</a>
+        <a href="/cart" class="btn outline">My Cart</a>
+        <a href="/products" class="btn outline">Shop</a>
+      </div>
+    </div>
+
+  </div>
+
+</div>

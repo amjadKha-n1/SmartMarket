@@ -1,0 +1,36 @@
+<link rel="stylesheet" href="/css/orders.css">
+
+<h1>Orders for Your Products</h1>
+
+<% if (!orders || orders.length === 0) { %>
+  <div class="empty-state">
+    <p>No orders yet.</p>
+  </div>
+<% } else { %>
+  <table class="order-table">
+    <thead>
+      <tr>
+        <th>Order</th>
+        <th>Customer</th>
+        <th>Product</th>
+        <th>Qty</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% orders.forEach(order => { %>
+        <% order.items.forEach(item => { %>
+          <tr>
+            <td>#<%= order._id.toString().slice(-6) %></td>
+            <td><strong><%= order.user.name +' ('+ order.user.email + ')' %></strong></td>
+            <td><%= item.product ? item.product.title : "Deleted Product" %></td>
+            <td><%= item.quantity %></td>
+            <td class="status <%= item.status %>">
+              <%= item.status %>
+            </td>
+          </tr>
+        <% }) %>
+      <% }) %>
+    </tbody>
+  </table>
+<% } %>

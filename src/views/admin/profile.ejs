@@ -1,0 +1,37 @@
+<link rel="stylesheet" href="/css/profile.css">
+
+<div class="profile-wrapper">
+
+  <div class="profile-card admin">
+
+    <div class="profile-top">
+      <img src="<%= user.avatar || '/images/default-avatar.png' %>" class="avatar">
+      <div>
+        <h1><%= user.name %></h1>
+        <span class="badge admin">Administrator</span>
+        <p class="muted"><%= user.email %></p>
+      </div>
+    </div>
+
+    <div class="profile-section">
+      <h3>Account Details</h3>
+      <div class="info-grid">
+        <p><strong>Email:</strong> <%= user.email %></p>
+        <p><strong>Phone:</strong> <%= user.phone || '—' %></p>
+        <p><strong>Joined:</strong> <%= user.createdAt.toDateString() %></p>
+        <p><strong>Role:</strong> Admin</p>
+      </div>
+    </div>
+
+    <div class="profile-section">
+      <h3>Admin Actions</h3>
+      <div class="action-grid">
+        <a href="/admin/dashboard" class="btn">Dashboard</a>
+        <a href="/admin/users" class="btn outline">Manage Users</a>
+        <a href="/admin/orders" class="btn outline">All Orders</a>
+      </div>
+    </div>
+
+  </div>
+
+</div>

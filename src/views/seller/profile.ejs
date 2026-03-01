@@ -1,0 +1,48 @@
+<link rel="stylesheet" href="/css/profile.css">
+
+<div class="profile-wrapper">
+
+  <div class="profile-card seller">
+
+    <div class="profile-top">
+      <img src="<%= user.avatar || '/images/default-avatar.png' %>" class="avatar">
+      <div>
+        <h1><%= seller.storeName %></h1>
+        <span class="badge seller">Seller</span>
+        <p class="muted">Owner: <%= user.name %></p>
+      </div>
+    </div>
+
+    <div class="profile-section">
+      <h3>Personal Info</h3>
+      <div class="info-grid">
+        <p><strong>Name:</strong> <%= user.name %></p>
+        <p><strong>Email:</strong> <%= user.email %></p>
+        <p><strong>Phone:</strong> <%= user.phone || '—' %></p>
+      </div>
+    </div>
+
+    <div class="profile-section">
+      <h3>Store Info</h3>
+      <div class="info-grid">
+        <p><strong>Store Name:</strong> <%= seller.storeName %></p>
+        <p><strong>Status:</strong>
+          <span class="status <%= seller.status %>"><%= seller.status %></span>
+        </p>
+        <p><strong>Total Sales:</strong> $<%= seller.totalSales || 0 %></p>
+        <p><strong>Seller Since:</strong> <%= seller.createdAt.toDateString() %></p>
+      </div>
+    </div>
+
+    <div class="profile-section">
+      <h3>Seller Actions</h3>
+      <div class="action-grid">
+        <a href="/seller" class="btn">Dashboard</a>
+        <a href="/seller/products" class="btn outline">My Products</a>
+        <a href="/seller/orders" class="btn outline">Orders</a>
+      </div>
+    </div>
+
+  </div>
+
+</div>

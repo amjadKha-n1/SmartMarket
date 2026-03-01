@@ -1,7 +1,3 @@
-Perfect 👌 I’ll give you a clean, professional **README.md** you can paste directly into GitHub.
-
-You can copy everything below 👇
-
 ---
 
 # 📦 SmartMarket
